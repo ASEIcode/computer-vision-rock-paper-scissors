@@ -287,17 +287,35 @@ In each conditional statement we print the prediction to the terminal for the us
         play()
 
 -----------------------------------------
-Known bugs and Changes still to be made before project completion:
+### **Improvements Change Log:**
 
-1. Currently if the model predictions "Nothing" this will break the code. I need to put in a validation loop that asks for another guess if "Nothing" is predicted.
+#### 02/08/2023
 
-2. Move everything into a class. 
+- Added extra elif statement to handle the error that would be displayed if user_choice returned as "Nothing"
 
-3. Get the webcam window working (it currently just hangs not responding on my system though it does take input and make a prediction). I think this may be an issue with my particular hardware and software setup for my webcam.
+        elif user_choice == "Nothing": # prevents an error in case of "Nothing" being returned
+                print("Sorry I didnt understand your choice. Please try again...")
 
-4. At the moment the model is somehow biased towards paper and responds slowly when you change your hand gesture. (It may take up to 2 more rounds for it to regognise the changing hand gesture and it always guesses paper the first time.) I need to find out why this happens and fix it. I suspect it is the same bug which is stopping my webcam window from showing the frame 
+- Moved the whole game and all of its functions into the Rps_game Class. Added self and tweaked any mismatched logic to fit the class.
 
-5. Once the above is fixed, have the webcam output window overlay the terminal output, countdown etc so the game can all be played in the webcam window.
+- Added winning_score to the instance initialasion to allow the user to choose the winning condition. (3 points, 5 points etc) when creating a game instance.
+
+        class Rps_game:
+        """When initialising the class. Enter a number to choose how many wins will be the winnign condition for either the CPU or the user
+        All the logic for the game and methods needed are contained below and each one is explained with its own docstring and in line comments"""
+
+        def __init__(self, winning_score) -> None:
+            self.winning_score = winning_score # how many points does the user or CPU need to win the game?
+
+### **Known issues and improvements to be made:**
+
+Note: The below bugs are likely just down to problems with my personal hardware
+
+1. Get the webcam window working (it currently just hangs not responding on my system though it does take input and make a prediction). I think this may be an issue with my particular hardware and software setup for my webcam.
+
+2. At the moment the model is somehow biased towards paper and responds slowly when you change your hand gesture. (It may take up to 2 more rounds for it to regognise the changing hand gesture and it always guesses paper the first time.) I need to find out why this happens and fix it. I suspect it is the same bug which is stopping my webcam window from showing the frame 
+
+3. Once the above is fixed, have the webcam output window overlay the terminal output, countdown etc so the game can all be played in the webcam window.
 
 
         
